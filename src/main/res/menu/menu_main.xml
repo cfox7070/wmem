@@ -1,6 +1,44 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <group android:id="@+id/group_n" >
+	<item android:id="@+id/action_new" 
+		android:title="@string/action_new"
+		app:showAsAction="always"
+        android:orderInCategory="1" />
+	</group>
+	<group android:id="@+id/group_q" >
+		<item android:id="@+id/action_add" 
+			android:title="@string/action_add"
+			app:showAsAction="always"
+			android:orderInCategory="3"
+			 />
+		<item android:id="@+id/action_start" 
+			android:title="@string/action_start"
+			app:showAsAction="always"
+			android:orderInCategory="2"
+			 />
+		<item android:id="@+id/action_importw" 
+			android:title="@string/action_importw"
+			app:showAsAction="never"
+			android:orderInCategory="5" />
+		<item android:id="@+id/action_exportw" 
+			android:title="@string/action_exportw"
+			android:orderInCategory="4"
+			 />
+		<item android:id="@+id/action_del" 
+			android:title="@string/action_del"
+			android:orderInCategory="6"
+			 />
+		<item android:id="@+id/action_qsettings" 
+			android:title="@string/action_qsettings"
+			android:orderInCategory="7"
+			 />
+	</group>
+	<group android:id="@+id/group_s" >
+	<item android:id="@+id/action_psettings" 
+		android:title="@string/action_psettings"
+		android:orderInCategory="100"
+		 />
+	</group>
 </menu>

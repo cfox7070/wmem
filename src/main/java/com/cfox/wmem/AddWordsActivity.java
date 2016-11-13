@@ -42,11 +42,9 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class AddWordsActivity extends Activity  {
 
     public static final String KEY_QUIZNAME="com.cfox.wmem.quizname";
-    public static final String KEY_QUIZES="com.cfox.wmem.quizes";
     String quizname;
-    private QuizData quizes;
     // UI references.
-    private AutoCompleteTextView mWordView;
+    private EditText mWordView;
     private EditText mTrans;
 
     @Override
@@ -57,9 +55,9 @@ public class AddWordsActivity extends Activity  {
 
         quizname=getIntent().getStringExtra(KEY_QUIZNAME);
         final TextView caption=(TextView) findViewById(R.id.quizname);
-        String scap=quizname+"("+getCount()+")";
+        String scap=quizname+"("+QuizData.getQuizData().getWordCount(quizname)+")";
         caption.setText(scap);
-        mWordView = (AutoCompleteTextView) findViewById(R.id.word);
+        mWordView = (EditText) findViewById(R.id.word);
         mTrans=(EditText)findViewById(R.id.trans);
         ((Button) findViewById(R.id.add)).setOnClickListener(new OnClickListener() {
             @Override
@@ -74,12 +72,8 @@ public class AddWordsActivity extends Activity  {
                     mTrans.requestFocus();
                     return;
                 }
-                SQLiteDatabase db=QuizData.getQuizData().getWritableDatabase();
-                sw=DatabaseUtils.sqlEscapeString(sw);
-                st=DatabaseUtils.sqlEscapeString(st);
-                String winsert="INSERT OR IGNORE INTO "+quizname+" (word,trans,session,datetime) VALUES (?, ?, 0, 0);";
-                db.execSQL(winsert,new String[]{sw,st});
-                String scap=quizname+"("+getCount()+")";
+                int count=QuizData.getQuizData().addWord(quizname,sw,st);
+                String scap=quizname+"("+count+")";
                 caption.setText(scap);
                 mWordView.setText("");
                 mTrans.setText("");
@@ -99,19 +93,5 @@ public class AddWordsActivity extends Activity  {
             }
         });
     }
-
-    private int getCount(){
-        final String count="SELECT COUNT(*) FROM ";
-        int c=0;
-        SQLiteDatabase db=QuizData.getQuizData().getReadableDatabase();
-        String cnt=count+quizname+";";
-        Cursor cur=db.rawQuery(cnt, null);
-        boolean r=cur.moveToFirst();
-        if(r)
-           c=cur.getInt(0);
-        return c;
-    }
-
-
 }
 

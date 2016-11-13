@@ -1,62 +1,73 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:gravity="center_horizontal"
-    android:orientation="vertical" android:paddingBottom="@dimen/activity_vertical_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.cfox.wmem.AddWordsActivity">
 
-            <TextView
-                android:id="@+id/quizname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="quiz name"/>
+    <TextView
+        android:id="@+id/quizname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="quiz name" />
 
-            <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
-                android:layout_marginTop="30dp"
-                android:layout_height="wrap_content">
 
-                <AutoCompleteTextView android:id="@+id/word" android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:hint="word"
-                    android:inputType="textAutoComplete" android:maxLines="1"
-                    android:imeOptions="actionNext"
-                    android:singleLine="true" />
+    <EditText
+        android:id="@+id/word"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="word"
+        android:imeOptions="actionNext"
+        android:inputType="textAutoComplete"
+        android:maxLines="1" />
 
-            </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
-                android:layout_marginTop="30dp"
-                android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/trans"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="translation"
+        android:imeOptions="actionNext"
+        android:inputType="textAutoComplete"
+        android:maxLines="1"
+        android:nextFocusForward="@+id/add" />
 
-                <EditText android:id="@+id/trans" android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:hint="translation"
-                    android:inputType="textAutoComplete" android:maxLines="1"
-                    android:imeOptions="actionNext"
-                    android:nextFocusForward="@+id/add"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:gravity="center_horizontal"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
         tools:context="com.cfox.wmem.AddWordsActivity">
 
-    <Button android:id="@+id/clear" style="?android:textAppearanceSmall"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" android:text="clear"
-                android:textStyle="bold"
-                android:layout_weight="0.5"/>
+        <Button
+            android:id="@+id/clear"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="0.5"
+            android:text="clear"
+            android:textStyle="bold" />
 
-        <Button android:id="@+id/add" style="?android:textAppearanceSmall"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" android:text="add"
-            android:textStyle="bold"
-            android:layout_weight="0.5"/>
+        <Button
+            android:id="@+id/add"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="0.5"
+            android:text="add"
+            android:textStyle="bold" />
 
-        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

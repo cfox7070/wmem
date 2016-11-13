@@ -1,0 +1,90 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/SettingLayout">
+
+            <TextView
+                style="@style/SettingCaption"
+                android:text="@string/qname" />
+
+            <EditText
+                android:id="@+id/s_qname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="hruhruhruhru" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/SettingLayout">
+
+            <TextView
+                style="@style/SettingCaption"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/numvars" />
+
+            <EditText
+                android:id="@+id/s_numvars"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="480" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/SettingLayout">
+
+            <TextView
+                style="@style/SettingCaption"
+                android:layout_marginTop="10dp"
+                android:text="@string/numreps" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/SettingLayout">
+
+            <TextView
+                style="@style/SettingCaption"
+                android:text="@string/dirtrans" />
+
+            <EditText
+                android:id="@+id/s_dirtrans"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="155" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/SettingLayout">
+
+            <TextView
+                style="@style/SettingCaption"
+                android:text="@string/revtrans" />
+
+            <EditText
+                android:id="@+id/s_revtrans"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="155" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/SettingLayout">
+
+            <TextView
+                style="@style/SettingCaption"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="@string/intses" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/s_intses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="15 18 48" />
+    </LinearLayout>
+
+</FrameLayout>
