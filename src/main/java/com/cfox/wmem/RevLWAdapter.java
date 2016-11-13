@@ -83,7 +83,7 @@ public class RevLWAdapter extends ArrayAdapter<String> {
     public void updateList(){
          Cursor cur=QuizData.getQuizData().getWords(qname,conditions,numVariants);
          cur.moveToFirst();
-         for(int i=0;i<values.length;i++){
+         for(int i=0;i<values.length &&!cur.isAfterLast();i++){
             values[i].id=cur.getInt(0);
              values[i].word=cur.getString(1);
              values[i].trans=cur.getString(2);
@@ -95,6 +95,7 @@ public class RevLWAdapter extends ArrayAdapter<String> {
              cur.moveToNext();
          }
         cur.close();
+        notifyDataSetChanged();
     }
 
     private void shuffle(){
@@ -154,6 +155,11 @@ public class RevLWAdapter extends ArrayAdapter<String> {
     public int getNSes() {
         return numSes;
     }
+
+    public int getCurInd() {
+        return curInd;
+    }
+
 
     static class ViewHolder {
         public TextView qtext;

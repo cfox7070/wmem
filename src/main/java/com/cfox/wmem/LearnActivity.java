@@ -12,9 +12,9 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class LearnActivity extends ListActivity {
-    private static final long millis_in_hour = 3600000;
-    private static final long millis_in_day = millis_in_hour * 24;
-    private static final long millis_in_week = millis_in_day * 7;
+//    private static final long millis_in_hour = 3600000;
+//    private static final long millis_in_day = millis_in_hour * 24;
+//    private static final long millis_in_week = millis_in_day * 7;
 
     private String quizname;
 
@@ -40,7 +40,6 @@ public class LearnActivity extends ListActivity {
         quizname=getIntent().getStringExtra(AddWordsActivity.KEY_QUIZNAME);
         caption=((TextView)findViewById(R.id.quizname));
         mAdapter=new RevLWAdapter(this,quizname);
-        mAdapter.updateList();
         ListView lv=getListView();
         lv.setAdapter(mAdapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -50,6 +49,7 @@ public class LearnActivity extends ListActivity {
                 setCaption();
             }
         });
+        mAdapter.updateList();
         question=(TextView)findViewById(R.id.question);
         question.setText(mAdapter.getWord());
         setCaption();

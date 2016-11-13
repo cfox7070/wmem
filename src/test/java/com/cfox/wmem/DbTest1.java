@@ -69,10 +69,24 @@ public class DbTest1 {
         assertThat(dbHelper.addWord("first","w4","t4"),greaterThan(-1));
         assertThat(dbHelper.addWord("first","w5","t5"),greaterThan(-1));
         assertThat(dbHelper.addWord("first","w6","t6"),greaterThan(-1));
+
+        assertThat(dbHelper.getWordCount("first"),is(equalTo(dbHelper.getWordCount("first",0))));
+
+
+        String conds="";
+        {
+            long curdate = System.currentTimeMillis();
+            long dt;
+            int i = 0;
+            conds += "(session = " + i + " AND datetime < " + curdate + ")";
+            for (i = 1; i < 4 + 1; i++) {
+                dt = curdate;
+                conds += " OR (session = " + i + " AND datetime < " + dt + ")";
+            }
+        }
+
+        assertThat(dbHelper.getWords("first",conds,5),is(notNullValue()));
     }
 
-    @Test
-    public void testAddTable1() {
-    }
 
 }

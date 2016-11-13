@@ -324,8 +324,12 @@ public class MainActivity extends ListActivity {
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String str = txtName.getText().toString();
-                        if (str != null && !str.equals(""))
+                        if (str != null && !str.equals("")) {
                             QuizData.getQuizData().addTable(str);
+                            long mh=3600000;
+                            String intrvls=(mh * 8)+" "+(mh*24 * 2)+" "+(mh*24*7)+" "+(mh*24*7*2);
+                            QuizData.getQuizData().addQuizSettings(str,5,2,1,intrvls);
+                            }
                         lm.restartLoader(CursorCallBacks.LOADER_ID, null, callbacks);
                     }
                 })

@@ -6,7 +6,7 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Bundle;
+
 
 /**
  * Created by mrr on 11/10/15.
@@ -21,7 +21,7 @@ public class QuizData extends SQLiteOpenHelper {
     }
 
     private static final String DATABASE_NAME = "quizes.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
 
     private QuizData(Context context) {
@@ -55,17 +55,14 @@ public class QuizData extends SQLiteOpenHelper {
                         " revreps INTEGER DEFAULT 1," +
                     " intervals TEXT NOT NULL DEFAULT \' 10 20 30 \');" ;
             db.execSQL(sql);
+            Cursor cur=getWordTables();
+            long mh=3600000;
+            String intrvls=(mh * 8)+" "+(mh*24 * 2)+" "+(mh*24*7)+" "+(mh*24*7*2);
+            for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
+                String tname=cur.getString(0);
+                addQuizSettings(tname,5,2,1,intrvls);
+            }
         }
-//TODO: in version 4 set fields for settings
-    }
-
-    /**
-     *
-     * @param name
-     * @return id of table or -1
-     */
-    public int findTable(String name){
-        return 0;
     }
 
     public void addTable(String name){
@@ -81,7 +78,7 @@ public class QuizData extends SQLiteOpenHelper {
 
     public Cursor getWordTables(){
         String showTables1 = "SELECT name FROM sqlite_master WHERE type='table' "
-                + " and name not like 'android%' and name not like 'sqlite%' and name not like 'wmem%'" +
+                + " and name not like 'android%' and name not like 'sqlite%' and name not like 'wmem%'and name not like 'quizsettings'" +
                 " ORDER BY name;";
         return  getReadableDatabase().rawQuery(showTables1, null);
     }
