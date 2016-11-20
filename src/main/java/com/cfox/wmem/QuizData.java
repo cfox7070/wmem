@@ -7,6 +7,34 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import static com.cfox.wmem.DataContract.*;
+
+class DataContract{
+
+    public static class qs{ //quiz settiongs
+        public static final String tablename="quizsettings";
+        public static final String id="_id";
+        public static final String qname="qname";
+        public static final String numvar="numvar";
+        public static final String dirreps="dirreps";
+        public static final String revreps="revreps";
+        public static final String intervals="intervals";
+        //todo: there in next version:
+//        public static final String langword="langword";
+//        public static final String langtrans="langtrans";
+    }
+
+    public static class w{ //words
+        public static final String id="_id";
+         public static final String word="word";
+        public static final String trans="trans";
+        public static final String session="session";
+        public static final String datetime="datetime";
+        public static final String ndir="ndir";
+        public static final String nrev="nrev";
+    }
+
+}
 
 /**
  * Created by mrr on 11/10/15.
@@ -30,14 +58,14 @@ public class QuizData extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
-        String sql="CREATE TABLE IF NOT EXISTS quizsettings ("
-                + "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                " qname TEXT UNIQUE NOT NULL," +
-                " numvar INTEGER NOT NULL DEFAULT 5," +
-                " dirreps INTEGER DEFAULT 2," +
-                " revreps INTEGER DEFAULT 1," +
-                " intervals TEXT NOT NULL DEFAULT \' 10 20 30 \');" ;
+        
+        String sql="CREATE TABLE IF NOT EXISTS "+qs.tablename+" ("
+                + qs.id+" INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + qs.qname+" TEXT UNIQUE NOT NULL," +
+                qs.numvar+" INTEGER NOT NULL DEFAULT 5," +
+                qs.dirreps+" INTEGER DEFAULT 2," +
+                qs.revreps+" INTEGER DEFAULT 1," +
+                qs.intervals+" TEXT NOT NULL DEFAULT \' 10 20 30 \');" ;
         db.execSQL(sql);
         db.execSQL(sql);
     }
@@ -47,13 +75,13 @@ public class QuizData extends SQLiteOpenHelper {
         if(newVersion==4){
             String sql = "DROP TABLE IF EXISTS wmem_quizes;" ;
             db.execSQL(sql);
-            sql="CREATE TABLE IF NOT EXISTS quizsettings ("
-                    + "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        " qname TEXT UNIQUE NOT NULL," +
-                        " numvar INTEGER NOT NULL DEFAULT 5," +
-                        " dirreps INTEGER DEFAULT 2," +
-                        " revreps INTEGER DEFAULT 1," +
-                    " intervals TEXT NOT NULL DEFAULT \' 10 20 30 \');" ;
+            sql="CREATE TABLE IF NOT EXISTS "+qs.tablename+" ("
+                    + qs.id+" INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + qs.qname+" TEXT UNIQUE NOT NULL," +
+                    qs.numvar+" INTEGER NOT NULL DEFAULT 5," +
+                    qs.dirreps+" INTEGER DEFAULT 2," +
+                    qs.revreps+" INTEGER DEFAULT 1," +
+                    qs.intervals+" TEXT NOT NULL DEFAULT \' 10 20 30 \');" ;
             db.execSQL(sql);
             Cursor cur=getWordTables();
             long mh=3600000;
@@ -61,6 +89,10 @@ public class QuizData extends SQLiteOpenHelper {
             for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
                 String tname=cur.getString(0);
                 addQuizSettings(tname,5,2,1,intrvls);
+//                sql="ALTER TABLE "+tname+" ADD "+w.ndir+" INTEGER DEFAULT 0;";
+//                db.execSQL(sql);
+//                sql="ALTER TABLE "+tname+" ADD "+w.nrev+" INTEGER DEFAULT 0;";
+//                db.execSQL(sql);
             }
         }
     }
@@ -68,11 +100,13 @@ public class QuizData extends SQLiteOpenHelper {
     public void addTable(String name){
         SQLiteDatabase db = getWritableDatabase();
         String sql = "CREATE TABLE IF NOT EXISTS " + name + " ("
-                + "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "word text unique not null, " +
-                "trans text not null, " +
-                "session integer default 0, " +
-                "datetime integer default 0);";
+                + w.id+" INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                w.word+" text unique not null, " +
+                w.trans+" text not null, " +
+                w.session+" integer default 0, " +
+                w.datetime+" integer default 0);";//, "+
+//                w.ndir+" integer default 0, "+
+//                w.nrev+" integer default 0);";
             db.execSQL(sql);
      }
 
@@ -105,11 +139,11 @@ public class QuizData extends SQLiteOpenHelper {
     public void updateQuizSettings(String name,int nvar,int dreps,int rreps,String intervals) {
         if (name == null || intervals == null)
             return;
-        String upd = "UPDATE quizsettings SET (numvar="+nvar+
+        String upd = "UPDATE quizsettings SET numvar="+nvar+
                                             ",dirreps="+dreps+
                                             ",revreps="+rreps+
-                                            ",intervals='"+intervals+
-                                            "') WHERE name="+name+";";
+                                            ",intervals=\'"+intervals+
+                                            "\' WHERE name=\'"+name+"\';";
         getWritableDatabase().execSQL(upd);
     }
 
@@ -117,7 +151,7 @@ public class QuizData extends SQLiteOpenHelper {
         if(nullOrEmpty(name))
             return null;
         SQLiteDatabase db = getReadableDatabase();
-        String sql =  "SELECT numvar,dirreps,revreps,intervals FROM quizsettings WHERE name="+name+";";
+        String sql =  "SELECT numvar,dirreps,revreps,intervals FROM quizsettings WHERE qname=\'"+name+"\';";
         Cursor cur=db.rawQuery(sql,null);
         return cur;
      }
@@ -170,10 +204,8 @@ public class QuizData extends SQLiteOpenHelper {
         return cursor;
         }
 
-    public void updateWord(String table,String word,int ses,long time){
-        if (nullOrEmpty(table)|| nullOrEmpty(word))
-            return;
-        String upd = "UPDATE "+table+" SET (session="+ses+",datetime="+time+") WHERE word="+DatabaseUtils.sqlEscapeString(word)+";";
+    public void updateWord(String table,int id,int ses,long time){
+        String upd = "UPDATE "+table+" SET session="+ses+",datetime="+time+" WHERE _id="+id+";";
         getWritableDatabase().execSQL(upd);
     }
 

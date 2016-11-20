@@ -49,7 +49,6 @@ public class LearnActivity extends ListActivity {
                 setCaption();
             }
         });
-        mAdapter.updateList();
         question=(TextView)findViewById(R.id.question);
         question.setText(mAdapter.getWord());
         setCaption();

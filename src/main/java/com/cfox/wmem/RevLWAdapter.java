@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -31,15 +33,15 @@ public class RevLWAdapter extends ArrayAdapter<String> {
     private final int numRepeatsR;
     private final int numSes;
     private final long[] ses;
-    private  final LearnedWord[] values;
+    private  final LearnedWord[] values;//,tvalues; //todo use arraylist
     private final String conditions;
     private boolean rev=false;
 
-    private int curInd=0;
+    private int curInd=0, numHoles=0;
 
 
     public RevLWAdapter(Context context, String qname) {
-        super(context, -1, (String[]) null);//// TODO: 11/13/16 string dummy ???
+        super(context, -1, new ArrayList<String>());//// TODO: 11/13/16 string dummy ???
         this.context = context;
         this.qname = qname;
         Cursor cur=QuizData.getQuizData().getQuizSettings(qname);
@@ -54,16 +56,35 @@ public class RevLWAdapter extends ArrayAdapter<String> {
         ses=new long[numSes];
         setSessions(ss);
         values=new LearnedWord[numVariants];
+ //       tvalues=new LearnedWord[numVariants];
         conditions=setConditions();
         this.addAll(new String[numVariants]);
-     }
+        initList();
+        shuffle();
+        notifyDataSetChanged();
+    }
 
     private void setSessions(String[] ss) {
+        int j=0;
         for(int i=0;i<ss.length;i++){
-            double d=Float.parseFloat(ss[i]);
-            d*=millis_in_hour;
-            long l=Math.round(d);
-            ses[i]=l;
+            ss[i]=ss[i].trim();
+            if(ss[i].isEmpty())
+                continue;
+            int ic=ss[i].indexOf(",");
+            if(ic>-1)
+               ss[i]=ss[i].substring(0,ic);
+            if(ss[i].isEmpty())
+                continue;
+  //          try {
+                double d = Float.parseFloat(ss[i]);
+                d *= millis_in_hour;
+                long l = Math.round(d);
+                ses[j] = l;
+            System.out.println(ses[j]);
+                j++;
+ //           }catch (NumberFormatException e){
+                continue;
+ //           }
         }
     }
 
@@ -80,22 +101,46 @@ public class RevLWAdapter extends ArrayAdapter<String> {
         return s;
     }
 
-    public void updateList(){
-         Cursor cur=QuizData.getQuizData().getWords(qname,conditions,numVariants);
+    public void initList(){
+         Cursor cur=QuizData.getQuizData().getWords(qname,conditions,numVariants*2);
          cur.moveToFirst();
-         for(int i=0;i<values.length &&!cur.isAfterLast();i++){
-            values[i].id=cur.getInt(0);
+         for(int i=0;!cur.isAfterLast() && i<values.length;cur.moveToNext(),i++){
+             values[i]=new LearnedWord();
+             values[i].id=cur.getInt(0);
              values[i].word=cur.getString(1);
              values[i].trans=cur.getString(2);
              values[i].ses=cur.getInt(3);
              values[i].pDir=0;
              values[i].pRev=0;
              values[i].rev=false;
-             values[i].faled=false;
-             cur.moveToNext();
          }
         cur.close();
-        notifyDataSetChanged();
+ //       shuffle();
+  //      notifyDataSetChanged();
+     }
+
+    public void updateList(int ind){
+        Cursor cur=QuizData.getQuizData().getWords(qname,conditions,numVariants*2);
+        values[ind].id=-1;
+        nextrow:
+       for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
+            for(int i=0;i<values.length;i++) {
+                if(cur.getString(1).equals(values[i].word)) {
+                    continue nextrow;
+                }
+            }
+            values[ind].id=cur.getInt(0);
+            values[ind].word=cur.getString(1);
+            values[ind].trans=cur.getString(2);
+            values[ind].ses=cur.getInt(3);
+            values[ind].pDir=0;
+            values[ind].pRev=0;
+            values[ind].rev=false;
+            break;
+        }
+        cur.close();
+ //       shuffle();
+ //       notifyDataSetChanged();
     }
 
     private void shuffle(){
@@ -113,11 +158,15 @@ public class RevLWAdapter extends ArrayAdapter<String> {
     public String testPos(int pos) {
         LearnedWord lv=values[curInd];
         if(pos!=curInd) {
-             lv.pDir=0;
+            lv.pDir=0;
             lv.pRev=0;
             lv.rev=false;
-            lv.faled=true;
-            return getWord(curInd);
+        //    lv.word="-";
+            QuizData.getQuizData().updateWord(qname,lv.id,0,0);
+            rev=false;
+            notifyDataSetChanged();
+            return unescapeString(lv.word);
+ //           updateList(curInd);
         }else {
             if(!rev) {
                lv.pDir++;
@@ -126,16 +175,17 @@ public class RevLWAdapter extends ArrayAdapter<String> {
             }else {
                 lv.pRev++;
                 if(lv.pRev>=numRepeatsR) {
-                    if(lv.faled)
-                      QuizData.getQuizData().updateWord(qname,lv.word,0,0);
-                    else
-                        QuizData.getQuizData().updateWord(qname,lv.word,lv.ses+1,System.currentTimeMillis()+ses[lv.ses]);
-                        updateList();
+                    System.out.println(System.currentTimeMillis());
+                    System.out.println(ses[lv.ses]);
+                    System.out.println();
+                        QuizData.getQuizData().updateWord(qname,lv.id,lv.ses+1,System.currentTimeMillis()+ses[lv.ses]);
+                        updateList(curInd);
                 }
             }
-            shuffle();
-            return getWord();
-        }
+       }
+        shuffle();
+        notifyDataSetChanged();
+        return getWord();
     }
 
     public String getWord() {
@@ -143,6 +193,12 @@ public class RevLWAdapter extends ArrayAdapter<String> {
     }
 
     private String getWord(int ind) {
+        if(values[ind].id==-1) {
+            numHoles++;
+            if(numHoles==(numVariants-1))
+                throw new RuntimeException("no enough words");
+            return getWord();
+        }
         curInd=ind;
         LearnedWord lv=values[curInd];
         rev=lv.rev;
@@ -178,11 +234,11 @@ public class RevLWAdapter extends ArrayAdapter<String> {
              rowView.setTag(viewHolder);
         }
         viewHolder=(ViewHolder) rowView.getTag();
-        if(values[position]!=null) {
+        if(values[position]!=null && values[position].id!=-1) {
             if (rev)
-                viewHolder.qtext.setText(values[position].word);
+                viewHolder.qtext.setText(unescapeString(values[position].word));
             else
-                viewHolder.qtext.setText(values[position].trans);
+                viewHolder.qtext.setText(unescapeString(values[position].trans));
         } else{
             viewHolder.qtext.setText("");
         }
@@ -233,13 +289,25 @@ public class RevLWAdapter extends ArrayAdapter<String> {
     }
 
     private static class LearnedWord {
-        int id;
-        String word;
-        String trans;
+        int id=-1;
+        String word="";
+        String trans="";
         int pDir=0;
         int pRev=0;
         int ses=0;
         boolean rev=false;
         boolean faled=false;
+
+//        public LearnedWord(){}
+//        public void init(LearnedWord src){
+//            this.id=src.id;
+//            this.word=src.word;
+//            this.trans=src.trans;
+//            this.pDir=src.pDir;
+//            this.pRev=src.pRev;
+//            this.ses=src.pRev;
+//            this.rev=src.rev;
+//            this.faled=src.faled;
+ //       }
         }
 }
