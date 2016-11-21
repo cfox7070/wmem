@@ -9,12 +9,24 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:gravity="fill">
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <!--<LinearLayout
         android:id="@+id/buttons"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/toolbar"
         android:layout_weight="1">
 
         <Button
@@ -52,20 +64,20 @@
             android:id="@+id/buttonDel"
             android:layout_weight="0.2"
             />
-    </LinearLayout>
+    </LinearLayout>-->
 
-    <ListView android:id="@android:id/list"
+    <ListView android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/buttons"
+        android:layout_below="@+id/toolbar"
         android:layout_weight="1"
         android:drawSelectorOnTop="false"/>
 
-    <TextView android:id="@android:id/empty"
+    <!--<TextView android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/buttons"
         android:background="#f1e9e9"
-        android:text="No data"/>
+        android:text="No data"/>-->
 </RelativeLayout>
 

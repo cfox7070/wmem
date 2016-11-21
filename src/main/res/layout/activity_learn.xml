@@ -34,18 +34,18 @@
         android:textSize="36dp"
         android:text="text"/>
 
-    <ListView android:id="@android:id/list"
+    <ListView android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/question"
         android:layout_weight="1"
         android:drawSelectorOnTop="false"/>
 
-    <TextView android:id="@android:id/empty"
+   <!-- <TextView android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/question"
         android:background="#f1e9e9"
-        android:text="No data"/>
+        android:text="No data"/>-->
 
 </RelativeLayout>

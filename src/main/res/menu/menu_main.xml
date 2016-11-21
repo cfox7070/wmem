@@ -36,9 +36,9 @@
 			 />
 	</group>
 	<group android:id="@+id/group_s" >
-	<item android:id="@+id/action_psettings" 
+	<!--<item android:id="@+id/action_psettings"
 		android:title="@string/action_psettings"
 		android:orderInCategory="100"
-		 />
+		 />-->
 	</group>
 </menu>
