@@ -1,0 +1,442 @@
+without / без
+safe / безопасный
+worry (about) / беспокоиться (о)
+ticket / билет
+near / близко
+brother / брат
+it hurts / болит
+pain / боль
+ill / больной
+more / больше
+big / большой
+afraid (of) / бояться
+I’m afraid that / боюсь, что
+will / буду
+paper / бумага
+would / бы
+quickly / быстро
+fast / быстрый
+be / быть
+
+in / в (внутри)
+into / в (внутрь)
+important / важный
+everywhere / везде
+great / великий
+believe / верить
+true / верный
+probably / вероятно
+top (on the top of) / верх (сверху)
+have fun / веселиться
+cheerful / весёлый
+вечер - evening
+thing / вещь
+take / взять
+see / видеть
+down / вниз
+at the bottom / внизу
+during / во время
+in time / вовремя
+water / вода
+air / воздух
+perhaps, maybe / возможно
+possible / возможный
+question / вопрос
+damage / вред
+time / время
+all the / весь, вся
+all, everybody / все
+everything / всё
+always / всегда
+remember / вспомнить
+meet / встретить
+yesterday / вчера
+high / высокий  (что-либо)
+tall / высокий (кто-либо)
+upstairs / выше (по лестнице)
+
+newspaper / газета
+where? / где?
+eye / глаз
+stupid / глупый
+speak, talk / говорить
+year / год
+head / голова
+hungry / голодный
+voice / голос
+city, town / город
+ready / готов
+dirty / грязный
+
+yes / да
+lady / дама
+give / дать
+girl / девочка
+do / делать
+day / день
+money / деньги
+hold / держать
+cheap / дешёвый
+long / длинный
+for / для
+before / до (перед)
+until / до (вплоть до)
+kind / добрый
+satisfied (with), pleased / доволен
+quite, fairly / довольно (вполне)
+must, have to / должен
+home / дом (жилище), домой
+house / дом (здание)
+I’m at home / я дома
+road / дорога
+dear / дорогой, -ая (при обращении)
+expensive / дорогой (по цене)
+enough / достаточно
+daughter / дочь
+friend / друг (подруга)
+other / другой
+think (about, of) / думать (о)
+
+food / еда
+if / если
+eat / есть (кушать)
+go / ехать
+still / ещё
+
+hot / жаркий
+wait (for) / ждать
+wife / жена
+married (to) / женат (на) / замужем (за)
+woman / женщина
+life / жизнь
+live / жить (существовать)
+live / жить (проживать)
+
+behind / за (сзади)
+forget / забыть
+tomorrow / завтра
+shut (close) / закрыть
+sound / звук
+here / здесь
+earth / земля
+know / знать
+so / значит (итак)
+mean / значить
+
+and / и
+play / играть
+go, walk / идти
+from / из
+because of / из-за
+famous / известный
+change / изменить
+learn / изучить
+or / или
+have / иметь
+name / имя
+otherwise / иначе
+sometimes / иногда
+foreign  / иностранный
+interesting / интересный
+look (for) / искать
+use / использовать
+
+to / к
+unfortunately / к сожалению
+every / каждый
+how / как
+any, some / какой-нибудь
+pencil / карандаш
+picture / картина
+flat (Англия), apartment (США) / квартира
+key / ключ
+book / книга
+when / когда
+when? / когда?
+room / комната
+of course / конечно
+finish / кончить
+short / короткий
+who (кто-либо), which (что-либо) / который
+beautiful / красивый
+except / кроме
+who? / кто?
+somebody / кто-нибудь
+buy / купить
+ piece, bit / кусок
+
+left, (on the left) / левый  (слева)
+easy / лёгкий (не сложный)
+light / лёгкий (по весу)
+lie / лежать
+lie down, go to bed / лечь
+better / лучше
+the best / лучше всего, лучший
+love / любить
+people / люди
+
+shop / магазин
+small / маленький
+boy / мальчик
+mother / мать
+car / машина
+slow / медленный
+between / между
+dead / мёртвый
+place / место
+month / месяц
+minute (just a moment!) / минута (одну минуту!)
+мир (земля)  - world
+much / много (нельзя сосчитать)
+many / много (можно сосчитать)
+young / молодой
+can / мочь (физически)
+may / мочь (иметь разрешение)
+husband / муж
+man / мужчина
+wash / мыть
+
+on / на
+up / наверх
+up / наверху
+over / над
+hope / надеяться
+ago (2 days ago) / назад (2 дня назад)
+find / найти
+finally / наконец
+tax (VAT) / налог (НДС)
+people / народ
+out / наружу
+begin / начать
+not / не
+wrong / неверный (неправильный, ошибочный)
+impossible / невозможный
+week / неделя
+immediately / немедленно
+a little / немного
+necessary / необходимый
+several / несколько
+accident / несчастный случай
+no / нет
+low / низкий
+never / никогда
+nobody / никто
+nothing / ничего
+but / но
+new / новый
+news / новости
+ foot / нога (стопа) 
+night / ночь
+like / нравиться
+need / нуждаться
+
+about / о
+both / оба
+worried (about) / обеспокоен (из-за)
+promise / обещать
+teach / обучить
+usually / обычно
+common, usual / обычный
+clothes / одежда
+alone / одинокий
+once / однажды
+lend / одолжить (кому-либо)
+borrow (from) / одолжить (у кого-либо)
+about / около (приблизительно)
+near / около (рядом, близко)
+dangerous / опасный
+again / опять
+especially / особенно
+leave / оставить
+stop / остановить
+stop / остановиться
+stay / остаться
+from / от
+answer / ответить
+father / отец
+open / открыть
+with pleasure / охотно
+very / очень
+mistake / ошибка
+
+first / первый
+translate / переводить
+in front of (the house) / перед (домом)
+sing / петь
+sad / печальный
+write / писать
+drink / пить
+letter / письмо
+cry / плакать
+pay / платить
+bad / плохой
+at least / по меньшей мере
+towards / по направлению к
+weather / погода
+try / пробовать
+under / под
+let / позволить
+late / поздний
+not yet / пока нет
+show / показать
+full / полный
+put / положить
+get / получить
+half an hour / полчаса
+help / помочь
+understand / понять
+send / послать
+after / после
+last / последний
+gradually / постепенно
+then / потом
+ground / почва
+почему? /why?
+almost / почти
+right / прав
+right (on the right) / правый (справа)
+suggest / предложить
+beautiful / прекрасный
+arrive / прибыть
+bring / привезти
+used to / привык
+come / прийти
+fetch, bring / принести
+reason (for) / причина
+nice / приятный
+continue / продолжить
+try / пробовать
+check / проверить
+sell / продать
+against / против
+empty / пустой
+путешествие - journey
+travel / путешествовать
+
+work / работать
+glad / рад
+time / раз
+different / различный
+early / ранний
+child / ребёнок
+relative / родственник
+mouth / рот
+hand / рука
+pen / ручка
+
+with / с
+since that time / с тех пор
+light / свет
+free / свободный
+today / сегодня
+family / семья
+angry (at) / сердитый (на)
+heart / сердце
+sister / сестра
+strong / сильный
+say / сказать
+through / сквозь
+how many? / сколько? (можно сосчитать)
+how much? / сколько? (нельзя сосчитать)
+soon / скоро
+boring / скучный
+следовало бы  - should
+next / следующий
+too / слишком
+word / слово
+слушать  - listen (to)
+hear / слышать
+смешной  - funny
+laugh (at) / смеяться (над)
+look (at) / смотреть (на)
+first / сначала
+collect / собрать
+completely / совершенно
+according to / согласно
+sun / солнце
+sort / сорт
+sleep / спать
+calm, quiet / спокойный
+way / способ
+ask / спросить
+urgent / срочный
+old / старый
+become / стать (сделаться)
+side / сторона
+stand / стоять
+country / страна
+page / страница
+strange / странный
+bag / сумка
+dry / сухой
+happy / счастливый
+son / сын
+surprise / сюрприз
+
+so / так
+as / так как (поскольку)
+because / так как (потому что)
+too, also / также
+such / такой
+there / там
+hard / твёрдый
+now / теперь
+warm / тёплый
+lose / терять
+then / тогда
+only / только
+just / только что
+that, те - those / тот, та
+same / тот же самый
+exactly / точно
+difficult / трудный
+heavy / тяжёлый
+
+at / у
+certain / уверен
+surprised (at) / удивлён
+terrible / ужасный
+already / уже
+street / улица
+fall / упасть
+use / употребить
+drop / уронить
+tired / усталый
+morning (in the morning) / утро (утром) 
+teacher / учитель
+
+bread / хлеб
+cold / холодный
+good / хороший
+well / хорошо
+want / хотеть
+although / хотя
+keep / хранить
+worse (the worst) / худший (наихудший)
+
+color / цвет
+hole / целый
+price / цена
+
+hour / час
+often / часто
+part / часть
+watch / часы
+than / чем
+person / человек
+suitcase / чемодан
+clean / чистый
+read / читать
+that (what?) / что (что?)
+something / что-нибудь
+feel / чувствовать
+wonderful / чудесный
+
+school / школа
+noise / шум
+joke / шутить
+
+this (these) / этот, эта, это (эти)
+
+language / язык
+clear / ясный

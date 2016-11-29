@@ -9,6 +9,14 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import static android.database.DatabaseUtils.sqlEscapeString;
 import static com.cfox.wmem.DataContract.qs;
@@ -49,26 +57,56 @@ public class QuizData extends SQLiteOpenHelper {
     public static void initQuizdata(Context context){
         if(mqdata==null)
             mqdata=new QuizData(context.getApplicationContext());
+        mqdata.initDB();
     }
 
-    public static QuizData getQuizData(){
-        if(mqdata==null)
-            throw new RuntimeException("QuizData must be initialized");
+    public static QuizData getQuizData(Context context){
+        if(mqdata==null) {
+         //   throw new RuntimeException("QuizData must be initialized");
+            mqdata=new QuizData(context.getApplicationContext());
+            mqdata.initDB();
+        }
         return mqdata;
+    }
+
+    public static void closeQuizData(){
+        if(mqdata!=null) {
+            mqdata.close();
+            mqdata=null;
+        }
     }
 
     private static final String DATABASE_NAME = "quizes.db";
     private static final int DATABASE_VERSION = 5;
 
     public static String unescapeString(String arg){
+        if(arg==null || arg.length()==0)
+            return arg;
         arg=arg.replace("''","'");
+        if(arg==null || arg.length()==0)
+            return arg;
         if(arg.charAt(0)=='\'') arg=arg.substring(1);
+        if(arg==null || arg.length()==0)
+            return arg;
         if(arg.charAt(arg.length()-1)=='\'') arg=arg.substring(0,arg.length()-1);
         return arg;
     }
 
+    private SQLiteDatabase mDB;
+
     private QuizData(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    private void initDB(){
+        mDB=getWritableDatabase();
+    }
+
+    @Override
+    public synchronized void close() {
+        mDB.close();
+        super.close();
+        mqdata=null;
     }
 
     @Override
@@ -126,28 +164,28 @@ public class QuizData extends SQLiteOpenHelper {
 
     public void addTable(String name){
         String sname=sqlEscapeString(name);
-        SQLiteDatabase db = getWritableDatabase();
         String sql = "CREATE TABLE IF NOT EXISTS " + sname + " ("
                 + w.id+" INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 w.word+" text unique not null, " +
                 w.trans+" text not null, " +
                 w.session+" integer default 0, " +
                 w.datetime+" integer default 0);";
-            db.execSQL(sql);
+            mDB.execSQL(sql);
      }
 
     public Cursor getWordTables(){
         String showTables1 = "SELECT name FROM sqlite_master WHERE type='table' "
                 + " and name not like 'android%' and name not like 'sqlite%' and name not like 'wmem%'and name not like 'quizsettings'" +
                 " ORDER BY name;";
-        return  getReadableDatabase().rawQuery(showTables1, null);
+        Cursor cur=mDB.rawQuery(showTables1, null);
+        return  cur;
     }
 
     public boolean tableExists(String tname){
         String sname=DatabaseUtils.sqlEscapeString(tname);
         String showTables1 = "SELECT name FROM sqlite_master WHERE type='table' "
                 + " and name=" +sname+";";
-        Cursor cur=getReadableDatabase().rawQuery(showTables1, null);
+        Cursor cur=mDB.rawQuery(showTables1, null);
         boolean res=cur.getCount()!=0;
         cur.close();
         return res;
@@ -155,9 +193,8 @@ public class QuizData extends SQLiteOpenHelper {
 
     public void delTable(String name) {
         name=sqlEscapeString(name);
-        SQLiteDatabase db = getWritableDatabase();
         String sql = "DROP TABLE IF EXISTS " + name + ";";
-        db.execSQL(sql);
+        mDB.execSQL(sql);
     }
 
     private void addQuizSettings(SQLiteDatabase db,String name,int nvar,int dreps,int rreps,String intervals) {
@@ -173,16 +210,15 @@ public class QuizData extends SQLiteOpenHelper {
     public void addQuizSettings(String name,int nvar,int dreps,int rreps,String intervals) {
         if(name==null || intervals==null)
             return;
-        SQLiteDatabase db = getWritableDatabase();
-        addQuizSettings(db,name,nvar,dreps,rreps,intervals);
+        addQuizSettings(mDB,name,nvar,dreps,rreps,intervals);
     }
 
     public void delQuizSettings(String name) {
         if (name == null)
             return;
         name=sqlEscapeString(name);
-         String upd = "DELETE FROM quizsettings WHERE qname="+name+";";
-        getWritableDatabase().execSQL(upd);
+         String upd = "DELETE FROM quizsettings WHERE qname="+name+" OR qname=quote("+name+");";
+        mDB.execSQL(upd);
     }
 
     private void updateQuizSettings(SQLiteDatabase db,String name,int nvar,int dreps,int rreps,String intervals) {
@@ -194,31 +230,35 @@ public class QuizData extends SQLiteOpenHelper {
                                             ",dirreps="+dreps+
                                             ",revreps="+rreps+
                                             ",intervals="+intervals+
-                                            " WHERE qname="+name+";";
+                                            " WHERE qname="+name+" OR qname=quote("+name+");";
         db.execSQL(upd);
     }
     public void updateQuizSettings(String name,int nvar,int dreps,int rreps,String intervals) {
-        updateQuizSettings(getWritableDatabase(),name,nvar,dreps,rreps,intervals);
+        updateQuizSettings(mDB,name,nvar,dreps,rreps,intervals);
     }
 
     public Cursor getQuizSettings(String name) {
         if(nullOrEmpty(name))
             return null;
         name=sqlEscapeString(name);
-        SQLiteDatabase db = getReadableDatabase();
-        String sql =  "SELECT numvar,dirreps,revreps,intervals FROM quizsettings WHERE qname="+name+";";
-        return db.rawQuery(sql,null);
+ /*       String sq="Select qname, intervals from quizsettings;";
+        Cursor c=db.rawQuery(sq,null);
+        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+            System.out.println(c.getString(0)+" "+c.getString(1));
+        }
+*/        String sql =  "SELECT numvar,dirreps,revreps,intervals FROM quizsettings WHERE qname="+name+
+                " OR qname=quote("+name+");";
+        return mDB.rawQuery(sql,null);
      }
 
     public int addWord(String table,String word,String trans){
         if(nullOrEmpty(table) ||nullOrEmpty(word) ||nullOrEmpty(trans))
             return getWordCount(table);
-        table=sqlEscapeString(table);
-        SQLiteDatabase db=getWritableDatabase();
+        String etable=sqlEscapeString(table);;
         word= DatabaseUtils.sqlEscapeString(word);
         trans=DatabaseUtils.sqlEscapeString(trans);
-        String winsert="INSERT OR IGNORE INTO "+table+" (word,trans,session,datetime) VALUES (?, ?, 0, 0);";
-        db.execSQL(winsert,new String[]{word,trans});
+        String winsert="INSERT OR IGNORE INTO "+etable+" (word,trans,session,datetime) VALUES (?, ?, 0, 0);";
+        mDB.execSQL(winsert,new String[]{word,trans});
         return getWordCount(table);
     }
 
@@ -228,10 +268,9 @@ public class QuizData extends SQLiteOpenHelper {
         table=sqlEscapeString(table);
         final String count="SELECT COUNT(*) FROM ";
         int c=0;
-        SQLiteDatabase db=getReadableDatabase();
 
         String cnt=count+table+";";
-        Cursor cur=db.rawQuery(cnt, null);
+        Cursor cur=mDB.rawQuery(cnt, null);
         boolean r=cur.moveToFirst();
         if(r)
             c=cur.getInt(0);
@@ -244,8 +283,7 @@ public class QuizData extends SQLiteOpenHelper {
         table=sqlEscapeString(table);
         final String count="SELECT COUNT(*) FROM "+table+" WHERE (session = ?);";
         int c=0;
-        SQLiteDatabase db=getReadableDatabase();
-        Cursor cur=db.rawQuery(count, new String[]{String.valueOf(ses)});
+        Cursor cur=mDB.rawQuery(count, new String[]{String.valueOf(ses)});
         boolean r=cur.moveToFirst();
         if(r)
             c=cur.getInt(0);
@@ -257,9 +295,31 @@ public class QuizData extends SQLiteOpenHelper {
         if(nullOrEmpty(table))
             return null;
         table=sqlEscapeString(table);
+/*
+        String gw = "SELECT _id, datetime FROM " + table +
+                " ORDER BY datetime DESC;";
+        String uw="UPDATE "+table+"SET datetime=? WHERE _id=?;";
+        Cursor c=mDB.rawQuery(gw,null);
+        long now=System.currentTimeMillis();
+        long rng=now+3600000*1000;
+        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+            int id=c.getInt(0);
+            long dt=c.getLong(1);
+            if(dt>rng){
+                System.out.println(System.currentTimeMillis());
+                System.out.println(rng);
+                System.out.println(dt);
+                dt=now+(dt-now)/3600000;
+                System.out.println(dt);
+                mDB.execSQL(uw,new String[]{String.valueOf(dt),String.valueOf(id)});
+            }
+
+        }
+        c.close();
+*/
         String getWords = "SELECT _id, word, trans, session, datetime FROM " + table +
                 " WHERE ("+conditions+") ORDER BY session DESC LIMIT "+vars+";";
-        return getReadableDatabase().rawQuery(getWords,null);
+        return mDB.rawQuery(getWords,null);
         }
 
     public Cursor getWords(String table){
@@ -267,13 +327,50 @@ public class QuizData extends SQLiteOpenHelper {
             return null;
         table=sqlEscapeString(table);
         String getWords = "SELECT word, trans FROM " + table +";";
-        return getReadableDatabase().rawQuery(getWords,null);
+        return mDB.rawQuery(getWords,null);
     }
 
     public void updateWord(String table,int id,int ses,long time){
         table=sqlEscapeString(table);
         String upd = "UPDATE "+table+" SET session="+ses+",datetime="+time+" WHERE _id="+id+";";
-        getWritableDatabase().execSQL(upd);
+        mDB.execSQL(upd);
+    }
+
+    public int importWords (InputStream is, String quizname){
+        int res=0;
+        BufferedReader br=null;
+        try {
+            if(is==null) return 0;
+            br=new BufferedReader(new InputStreamReader(is));
+            int count=0;
+            for(String line=br.readLine();line!=null;line=br.readLine()){
+                line=line.trim();
+                if(line.isEmpty())
+                    continue;
+                String[] wt=line.split("/");
+                if(wt.length!=2)
+                    throw new RuntimeException("bad file");
+                wt[0]=wt[0].trim();
+                wt[1]=wt[1].trim();
+                addWord(quizname,wt[0],wt[1]);
+                res++;
+            }
+        }  catch (IOException e) {
+            e.printStackTrace();
+        } catch(RuntimeException e){
+            if(e.getMessage().equals("bad file"))
+                e.printStackTrace();
+            else
+                throw e;
+        }finally {
+            try {
+                if (br != null)
+                    br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return res;
     }
 
     private boolean nullOrEmpty(String str){

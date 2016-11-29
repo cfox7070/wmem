@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">MemW</string>
-    <string name="title_activity_add_words">add words</string>
+    <string name="title_activity_add_words">Add words</string>
 
 	
-	<string name="action_new">New</string>
-	<string name="action_add">Add</string>
-	<string name="action_start">Start</string>
+	<string name="action_new">New quiz</string>
+	<string name="action_add">Add words</string>
+	<string name="action_start">Start learn</string>
 	<string name="action_importw">Import words</string>
 	<string name="action_exportw">Export words</string>
 	<string name="action_qsettings">Quiz settings</string>
@@ -18,7 +18,21 @@
 	<string name="dirtrans">direct translation</string>
 	<string name="revtrans">reverse translation</string>
 	<string name="numses">The number of sessions</string>
-	<string name="intses">Interval between sessions</string>
+	<string name="intses">Interval between sessions (hours)</string>
+	<string name="wrong_intervals">Wrong format of intervals</string>
+	<string name="more_repeats">Must be more repeats</string>
+	<string name="more_variants">Must be more variants</string>
+	<string name="table_exists">Quiz alredy exists</string>
+	<string name="delete">Delete</string>
+	<string name="bad_file">bad file</string>
+	<string name="words_added">words added</string>
+	<string name="words_exported">words exported</string>
+	<string name="total">total</string>
+	<string name="passed">passed</string>
+	<string name="word">word</string>
+	<string name="translation">translation</string>
+	<string name="clear">Clear</string>
+	<string name="add">Add</string>
 
 
 </resources>

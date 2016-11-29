@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import static com.cfox.wmem.QuizData.getQuizData;
+
 public class AddWordsActivity extends AppCompatActivity  {
 
     public static final String KEY_QUIZNAME="com.cfox.wmem.quizname";
@@ -23,10 +25,10 @@ public class AddWordsActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_add_words);
-
+        QuizData.initQuizdata(this);
         quizname=getIntent().getStringExtra(KEY_QUIZNAME);
         final TextView caption=(TextView) findViewById(R.id.quizname);
-        String scap=quizname+"("+QuizData.getQuizData().getWordCount(quizname)+")";
+        String scap=quizname+"("+QuizData.getQuizData(this).getWordCount(quizname)+")";
         caption.setText(scap);
         mWordView = (EditText) findViewById(R.id.word);
         mTrans=(EditText)findViewById(R.id.trans);
@@ -43,7 +45,7 @@ public class AddWordsActivity extends AppCompatActivity  {
                     mTrans.requestFocus();
                     return;
                 }
-                int count=QuizData.getQuizData().addWord(quizname,sw,st);
+                int count=QuizData.getQuizData(AddWordsActivity.this).addWord(quizname,sw,st);
                 String scap=quizname+"("+count+")";
                 caption.setText(scap);
                 mWordView.setText("");
@@ -64,5 +66,24 @@ public class AddWordsActivity extends AppCompatActivity  {
             }
         });
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        QuizData.closeQuizData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        QuizData.initQuizdata(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        QuizData.closeQuizData();
+    }
+
 }
 

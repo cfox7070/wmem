@@ -7,6 +7,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import static com.cfox.wmem.QuizData.getQuizData;
+
 
 public class LearnActivity extends AppCompatActivity {
 //    private static final long millis_in_hour = 3600000;
@@ -34,6 +36,7 @@ public class LearnActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn);
+        QuizData.initQuizdata(this);
         quizname=getIntent().getStringExtra(AddWordsActivity.KEY_QUIZNAME);
         caption=((TextView)findViewById(R.id.quizname));
         mAdapter=new RevLWAdapter(this,quizname);
@@ -53,15 +56,32 @@ public class LearnActivity extends AppCompatActivity {
 
 
     private void setCaption(){
-        QuizData qd=QuizData.getQuizData();
-        String strCap=quizname+" - total:"+qd.getWordCount(quizname)+" - ";
+        QuizData qd=QuizData.getQuizData(this);
+        String strCap=quizname+" - "+getString(R.string.total)+":"+qd.getWordCount(quizname)+" - ";
         int nSes=mAdapter.getNSes();
         int i=0;
         for(;i<=nSes;i++){
             strCap+=qd.getWordCount(quizname,i)+" : ";
        }
-        strCap+="passed: "+qd.getWordCount(quizname,i);
+        strCap+=getString(R.string.passed)+": "+qd.getWordCount(quizname,i);
         caption.setText(strCap);
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        QuizData.closeQuizData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        QuizData.initQuizdata(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        QuizData.closeQuizData();
     }
 
 }

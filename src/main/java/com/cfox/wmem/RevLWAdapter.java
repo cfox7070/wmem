@@ -46,7 +46,7 @@ public class RevLWAdapter extends ArrayAdapter<String> {
         super(context, -1, new ArrayList<String>());
         this.context = context;
         this.qname = qname;
-        Cursor cur=getQuizData().getQuizSettings(qname);
+        Cursor cur=getQuizData(context).getQuizSettings(qname);
         cur.moveToFirst();
         numVariants=cur.getInt(0);
         numRepeatsD=cur.getInt(1);
@@ -104,7 +104,7 @@ public class RevLWAdapter extends ArrayAdapter<String> {
     }
 
     public void initList(){
-         Cursor cur=getQuizData().getWords(qname,conditions,numVariants*2);
+         Cursor cur=getQuizData(context).getWords(qname,conditions,numVariants*2);
          cur.moveToFirst();
          for(int i=0;!cur.isAfterLast() && i<values.length;cur.moveToNext(),i++){
              values[i]=new LearnedWord();
@@ -120,7 +120,7 @@ public class RevLWAdapter extends ArrayAdapter<String> {
      }
 
     public void updateList(int ind){
-        Cursor cur=getQuizData().getWords(qname,conditions,numVariants*2);
+        Cursor cur=getQuizData(context).getWords(qname,conditions,numVariants*2);
         values[ind].id=-1;
         nextrow:
        for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()){
@@ -156,26 +156,26 @@ public class RevLWAdapter extends ArrayAdapter<String> {
     public String testPos(int pos) {
         LearnedWord lv=values[curInd];
         if(pos!=curInd) {
+            lv.ses=0;
             lv.pDir=0;
             lv.pRev=0;
             lv.rev=false;
-            getQuizData().updateWord(qname,lv.id,0,0);
+            getQuizData(context).updateWord(qname,lv.id,0,0);
             rev=false;
             notifyDataSetChanged();
             return unescapeString(lv.word);
         }else {
             if(!rev) {
                lv.pDir++;
-                if(lv.pDir>=numRepeatsD)
-                    lv.rev=true;
             }else {
                 lv.pRev++;
-                if(lv.pRev>=numRepeatsR) {
-                   getQuizData().updateWord(qname,lv.id,lv.ses+1,System.currentTimeMillis()+ses[lv.ses]);
-                        updateList(curInd);
-                }
+             }
+            if(lv.pRev>=numRepeatsR) {
+                getQuizData(context).updateWord(qname,lv.id,lv.ses+1,System.currentTimeMillis()+
+                        ses[lv.ses<ses.length?lv.ses:0]);
+                updateList(curInd);
             }
-       }
+        }
         shuffle();
         notifyDataSetChanged();
         return getWord(lv);
@@ -188,7 +188,7 @@ public class RevLWAdapter extends ArrayAdapter<String> {
 
     public String getWord(LearnedWord lv) {
         int ind=rnd.nextInt(numVariants);
-         for(;lv.word.equals(values[curInd].word) || values[ind].id==-1 ;){
+         for(;lv.word.equals(values[ind].word) || values[ind].id==-1 ;){
              ind=rnd.nextInt(numVariants);
          }
         return getWord(ind);
@@ -203,6 +203,8 @@ public class RevLWAdapter extends ArrayAdapter<String> {
 //        }
         curInd=ind;
         LearnedWord lv=values[curInd];
+        if(lv.pDir>=numRepeatsD)
+            lv.rev=true;
         rev=lv.rev;
         if (rev)
             return unescapeString(lv.trans);

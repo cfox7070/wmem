@@ -18,7 +18,7 @@
                 android:id="@+id/s_qname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="enter the name" />
+                android:text="quiz" />
         </LinearLayout>
 
         <LinearLayout style="@style/SettingLayout">
