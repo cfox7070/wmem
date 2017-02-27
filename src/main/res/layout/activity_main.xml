@@ -20,51 +20,6 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <!--<LinearLayout
-        android:id="@+id/buttons"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/toolbar"
-        android:layout_weight="1">
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New"
-            android:id="@+id/buttonNew"
-            android:enabled="true"
-            android:layout_weight="0.2"
-            />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add"
-            android:id="@+id/buttonAdd"
-            android:layout_weight="0.3"
-            />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Learn"
-            android:id="@+id/buttonQuiz"
-            android:layout_weight="0.3"
-            />
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Del"
-            android:id="@+id/buttonDel"
-            android:layout_weight="0.2"
-            />
-    </LinearLayout>-->
 
     <ListView android:id="@+id/list"
         android:layout_width="match_parent"
@@ -73,11 +28,6 @@
         android:layout_weight="1"
         android:drawSelectorOnTop="false"/>
 
-    <!--<TextView android:id="@android:id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/buttons"
-        android:background="#f1e9e9"
-        android:text="No data"/>-->
+
 </RelativeLayout>
 

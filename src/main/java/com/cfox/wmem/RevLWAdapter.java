@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 import static com.cfox.wmem.QuizData.getQuizData;
@@ -220,6 +221,14 @@ public class RevLWAdapter extends ArrayAdapter<String> {
         return curInd;
     }
 
+    public Locale getLang() {
+        return new Locale("es");
+    }
+
+    public boolean maySpeak() {
+        return !rev;
+    }
+
 
     static class ViewHolder {
         public TextView qtext;
@@ -249,42 +258,6 @@ public class RevLWAdapter extends ArrayAdapter<String> {
         }
         return rowView;
     }
-
-//    private void updateWorkArray() {
-//       SQLiteDatabase db = QuizData.getQuizData().getWritableDatabase();
-//        int nSes=intervals.length-1;
-//        int arrPos=0;
-//        ////
-//        ////
-//        ////
-//        String getWords = "SELECT _id, word, trans, session FROM " + quizname + " WHERE (session = ? AND datetime < ?);";
-//        loops:
-//        for(;nSes>-1;nSes--) {
-//            Cursor cursor = db.rawQuery(getWords, new String[]{String.valueOf(nSes), String.valueOf(curdate - intervals[nSes])});
-//            while (cursor.moveToNext()) {
-//                LearnedWord lw =new LearnedWord(cursor.getInt(0),unescapeString(cursor.getString(1)),
-//                        unescapeString(cursor.getString(2)),cursor.getInt(3));
-//                tempArray[arrPos]=lw;
-//                for(int i=0;i<workArray.length;i++){
-//                    if(workArray[i]!=null && workArray[i].id==tempArray[arrPos].id) {
-//                        tempArray[arrPos].pStr=workArray[i].pStr;
-//                        tempArray[arrPos].pRev=workArray[i].pRev;
-//                        workArray[i]=null;
-//                    }
-//                }
-//                arrPos++;
-//                if(arrPos==tempArray.length){
-//                    cursor.close();
-//                    break loops;
-//                }
-//            }
-//            cursor.close();
-//        }
-//        LearnedWord[] tarr=workArray;
-//        workArray=tempArray;
-//        tempArray=tarr;
-//        setCaption();
-//    }
 
     private static class LearnedWord {
         int id=-1;

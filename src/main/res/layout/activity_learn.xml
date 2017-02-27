@@ -21,23 +21,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:text="name"/>
 
-    <TextView
-        android:id="@+id/question"
+    <LinearLayout
+        android:id="@+id/qb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_below="@+id/quizname"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
-        android:textSize="36dp"
+        >
+        <ToggleButton
+            android:id="@+id/speak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/check"
+            android:layout_margin="5dp"
+            android:textOn=""
+            android:textOff=""
+            android:checked="true"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="36sp"
         android:text="text"/>
+    </LinearLayout>
 
     <ListView android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/question"
+        android:layout_below="@+id/qb"
         android:drawSelectorOnTop="false"/>
 
    <!-- <TextView android:id="@android:id/empty"

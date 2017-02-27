@@ -3,13 +3,13 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
-
     defaultConfig {
         applicationId "com.cfox.wmem"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName '1.2'
+        versionNameSuffix '1'
     }
     buildTypes {
         release {
@@ -17,11 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     testOptions {
         unitTests.all {
             systemProperty 'robolectric.logging.enabled', 'true'
         }
+    }
+    productFlavors {
     }
 }
 
@@ -31,5 +32,5 @@ dependencies {
     compile 'com.android.support:design:23.1.0'
     compile project(':fdlg')
     testCompile 'junit:junit:4.12'
-    testCompile "org.robolectric:robolectric:3.1.2"
+    testCompile 'org.robolectric:robolectric:3.1.2'
 }
