@@ -38,9 +38,12 @@ public class RevLWAdapter extends ArrayAdapter<String> {
     private final long[] ses;
     private  final LearnedWord[] values;//,tvalues; //todo use arraylist
     private final String conditions;
+    private final Locale lang;
+
     private boolean rev=false;
 
-    private int curInd=0, numHoles=0;
+
+    private int curInd=0;
 
 
     public RevLWAdapter(Context context, String qname) {
@@ -53,7 +56,9 @@ public class RevLWAdapter extends ArrayAdapter<String> {
         numRepeatsD=cur.getInt(1);
         numRepeatsR=cur.getInt(2);
         String s=cur.getString(3);
+        String lng=cur.getString(4);
         cur.close();
+        lang=new Locale(lng);
         String[] ss=s.split(" ");
         numSes=ss.length;
         ses=new long[numSes];
@@ -222,7 +227,7 @@ public class RevLWAdapter extends ArrayAdapter<String> {
     }
 
     public Locale getLang() {
-        return new Locale("es");
+        return lang;
     }
 
     public boolean maySpeak() {

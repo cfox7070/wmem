@@ -23,7 +23,15 @@ android {
         }
     }
     productFlavors {
+        dev {
+            minSdkVersion 22 // To reduce compilation time
+        }
+
+        prod {
+            minSdkVersion 16
+        }
     }
+
 }
 
 dependencies {

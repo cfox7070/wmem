@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.cfox.fdlg.FileChooser;
@@ -33,6 +34,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 import java.util.prefs.Preferences;
 
 import static com.cfox.wmem.QuizData.getQuizData;
@@ -110,20 +114,48 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        loadDicExamples();
+
+        updateTables();
+    }
+
+    private void loadDicExamples() {
         if(!getPreferences(MODE_PRIVATE).getBoolean("engru400",false)){
             try {
                 InputStream is=getAssets().open("eng-w400.txt");
-                getQuizData(this).addTable("eng-ru400");
+                getQuizData(this).addTable("eng-ru-400");
                 final String intrvls=(8)+" "+(24 * 2)+" "+(24*7)+" "+(24*7*2);
-                getQuizData(this).addQuizSettings("eng-ru400", 5, 2, 1, intrvls);
+                getQuizData(this).addQuizSettings("eng-ru400", 5, 2, 1, intrvls,"en");
                 getQuizData(this).importWords(is,"eng-ru400");
             } catch (IOException e) {
                 e.printStackTrace();
             }
             getPreferences(MODE_PRIVATE).edit().putBoolean("engru400",true).commit();
         }
-
-        updateTables();
+        if(!getPreferences(MODE_PRIVATE).getBoolean("engesp255",false)){
+            try {
+                InputStream is=getAssets().open("eng-esp.txt");
+                getQuizData(this).addTable("en-es-255");
+                final String intrvls=(8)+" "+(24 * 2)+" "+(24*7)+" "+(24*7*2);
+                getQuizData(this).addQuizSettings("en-es-255", 5, 2, 1, intrvls,"en");
+                getQuizData(this).importWords(is,"en-es-255");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            getPreferences(MODE_PRIVATE).edit().putBoolean("engesp255",true).commit();
+        }
+        if(!getPreferences(MODE_PRIVATE).getBoolean("espeng255",false)){
+            try {
+                InputStream is=getAssets().open("esp-eng.txt");
+                getQuizData(this).addTable("es-en-255");
+                final String intrvls=(8)+" "+(24 * 2)+" "+(24*7)+" "+(24*7*2);
+                getQuizData(this).addQuizSettings("es-en-255", 5, 2, 1, intrvls,"es");
+                getQuizData(this).importWords(is,"es-en-255");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            getPreferences(MODE_PRIVATE).edit().putBoolean("espeng255",true).commit();
+        }
     }
 
     @Override
@@ -390,14 +422,18 @@ public class MainActivity extends AppCompatActivity {
         EditText txname=(EditText) dialog.findViewById(R.id.s_qname);
         txname.setText(quizname);
         txname.setEnabled(false);
+        String slang=null;
         Cursor cur=getQuizData(this).getQuizSettings(quizname);
         if(cur.moveToFirst()){
             ((EditText) dialog.findViewById(R.id.s_numvars)).setText(cur.getString(0));
             ((EditText) dialog.findViewById(R.id.s_dirtrans)).setText(cur.getString(1));
             ((EditText) dialog.findViewById(R.id.s_revtrans)).setText(cur.getString(2));
             ((EditText)dialog.findViewById(R.id.s_intses)).setText(unescapeString(cur.getString(3)));
+            slang=cur.getString(4);
         }
         cur.close();
+        Spinner sp= (Spinner) dialog.findViewById(R.id.s_lang);
+        setLangs(sp,slang);
         dialog.show();
     }
 
@@ -418,7 +454,20 @@ public class MainActivity extends AppCompatActivity {
                 processUpdate(dialog,true);
             }
         });
+        Spinner sp= (Spinner) dialog.findViewById(R.id.s_lang);
+        setLangs(sp,"en");
         dialog.show();
+    }
+
+    private void setLangs(Spinner spinner,String selection){
+        String[] langs = Locale.getISOLanguages();
+        ArrayList<String> localcountries=new ArrayList<String>();
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, langs);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(dataAdapter);
+        if(selection==null) selection="en";
+        spinner.setSelection(Arrays.asList(langs).indexOf(selection));
     }
 
     private void processUpdate(Dialog dialog,boolean create){
@@ -443,12 +492,13 @@ public class MainActivity extends AppCompatActivity {
         nDir=nDir<0?0:nDir;
         nRev=nRev<0?0:nRev;
         vars=((EditText)dialog.findViewById(R.id.s_intses)).getText().toString();
+        String slang=((Spinner)dialog.findViewById(R.id.s_lang)).getSelectedItem().toString();
         if(checkVars(numVar,nDir,nRev,vars)) {
             if(create) {
                 getQuizData(this).addTable(qname);
-                getQuizData(this).addQuizSettings(qname, numVar, nDir, nRev, vars);
+                getQuizData(this).addQuizSettings(qname, numVar, nDir, nRev, vars,slang);
             }else{
-                getQuizData(this).updateQuizSettings(qname, numVar, nDir, nRev, vars);
+                getQuizData(this).updateQuizSettings(qname, numVar, nDir, nRev, vars,slang);
             }
             updateTables();
             dialog.dismiss();

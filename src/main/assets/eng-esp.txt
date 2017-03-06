@@ -1,0 +1,257 @@
+accounting    /    contabilidad 
+algebra    /    álgebra 
+art    /    arte        
+biology    /    biología        
+business    /    negocio        
+calculus    /    cálculo        
+chemistry    /    química       
+computer science    /    informática    
+dance    /    danza     
+economics    /    economía      
+foreign languages    /    idiomas extranjeros
+geography    /    geografía     
+geometry    /    geometría      
+history    /    historia        
+math    /    matemáticas        
+music    /    música    
+physical education    /    educación física
+physics    /    física  
+political science    /    ciencia política
+book    /    el libro
+college    /    el colegio
+computer    /    la computadora
+dictionary    /    el diccionário
+paper    /    el papel
+pencil    /    el lapiz
+pen    /    el lapicero
+professor          /    profesor	
+school    /    escuela  
+student    /    estudiente      
+teacher    /    maestro 
+exam    /    el examen
+university    /    la universidad
+to study    /    estudiar       
+to learn    /    aprender       
+to teach    /    enseñar        
+to write    /    escribir       
+to draw    /    dibujar 
+to read    /    leer    
+airport    /    el aeropuerto
+bakery    /    lapanadería      
+bank    /    el banco
+beach    /    la playa
+cafe    /    el café
+church    /    la iglesia
+factory    /    la fábrica
+garden    /    el gardín
+grocery store    /    almacén   
+home    /    el hogar
+hospital    /    la hospital
+library    /    la biblioteca
+market    /    el mercado
+movie theater    /    el cine
+museum    /    el museo
+pastry shop    /    panaderia   
+park    /    el parque
+pharmacy    /    la farmácia
+police station    /    la estación de la policía
+post office    /    los correos
+pool    /    la piscina
+restaurant    /    el restaurante
+school    /    la escuela
+stadium    /    el estadio
+store    /    tienda    
+train station    /    la estación del tren
+town hall    /    pasillo de ciudad
+bookstore    /    librería      
+zoo    /    parque zoológico
+office    /    la officina
+city    /    la ciudad
+the rent    /    la renta
+tax    /    el impuesto
+the cost    /    la cuesta
+price    /    el précio
+bill    /    la cuenta
+estimate    /    la estimación
+check    /    el cheque
+travelers check    /    el cheque de viajar
+passport    /    el passaporte
+baggage    /    el equipaje
+currency exchange    /    el intercambio de modernidad
+customs    /    las aduanas
+entrance    /    la entrada
+exit    /    el salido
+information    /    la información
+to pay    /    pagar    
+to buy    /    comprar  
+to sell    /    vender  
+to cost    /    costar  
+to rent    /    alquiler        
+to deposit    /    depositar    
+by airplane    /    en avión
+by bicycle    /    en bicicleta
+by boat    /    en barco
+by bus    /    en bus
+by car    /    en automovíl
+on foot    /    a pie
+by moped    /    en ciclomotor
+by motorcycle    /    en motocicleta
+by subway    /    en subterráneo
+by taxi    /    en taxi
+by train    /    en tren
+engine    /    motor    
+wheel    /    llanta    
+map    /    mapa        
+directions    /    los direcciones
+to accelerate    /    acelerar  
+to break    /    retardarse     
+to stop    /    parar   
+to go    /    ir        
+turn left    /   dar vuelta a la izqierda
+turn right    /   dar vuelta a la derecha
+go straight    /    ir derecho
+house    /    la casa
+apartment    /    el apartamento
+room    /    el cuarto
+living room    /    la sala
+kitchen    /    la cocina
+dining room    /   cuarto  de cenar
+hallway    /    vestíbulo       
+stairs    /    escaleras        
+bathroom    /    el baño
+bathtub    /    bañera  
+shower    /    ducha    
+sink    /    la pila
+roof    /    azotea     
+closet    /    armario  
+window    /    la ventana
+wall    /    la pared
+table    /    la mesa
+chair    /    la silla
+couch    /    sofá      
+desk    /    escritorio 
+dishwasher    /    lavaplatos   
+door    /    el puerto
+light    /    la luz
+bed    /    cama        
+blanket    /    manta   
+television    /    televisión   
+radio    /    el rádio
+refrigerator    /    la refrijedora
+stove    /    estufa    
+oven    /    el horno
+garbage    /    la basura
+microwave    /    microonda     
+head    /    la cabeza
+brain    /    el cerebro
+hair    /    el pelo
+face    /    la cara
+ear    /    el oreja
+eye    /    el ojo
+mouth    /    la boca
+nose    /    la naríz
+neck    /    el cuello
+shoulder    /    el hombro
+chest    /    el pecho
+stomach    /    el estómigo
+waist    /    la cintura
+back    /    la espalda
+heart    /    el corazón
+arm    /    el brazo
+elbow    /    el codo
+wrist    /    la muñeca
+hand    /    el mano
+finger    /    el dedo
+leg    /    la pierna
+foot    /    el pie
+hat    /    el del sombrero
+earrings    /    los pendientes
+shirt    /    la camisa
+blouse    /    la blusa
+dress    /    el vestido
+pants    /    los pantelones
+jeans    /    pantalones vaqueros
+skirt    /    la falda
+socks    /    los calcetines
+shoes    /    los zapatos
+swimsuit    /    el traje de bañar
+underwear    /    ropa anterior
+gloves    /    los guantes
+belt    /    la correa
+coat    /    la capa
+ring    /    el anillo 
+My arm hurts.    /	Me duelle en mi brazo.  
+Are you hurt?	/	¿Estás lastimado?
+I have a headache.	/	Tengo dolor de la cabeza.
+Do you have aspirin?	/	¿Tienes aspirina?
+You are hurting me.	/	Me estás lastimando.
+Don't hurt him.	/	No lo lastimas.
+toe    /    edo del pie
+dog    /    perro       
+cat    /    gato        
+mouse    /    ratón     
+bird    /    ave        
+chicken    /    gallina 
+rooster    /    gallo 
+cow    /    la vaca
+duck    /    pato       
+goat    /    la cabra
+horse    /    el caballo
+cerdo     /    pig       
+oveja     /    sheep     
+el lión    /    lion 
+el tigre    /    tiger 
+bear    /    el oso
+wolf    /    el lobo
+elephant    /    el elefante
+monkey    /    el mono
+skunk    /    la mofeta
+eagle    /    águila    
+fish    /    pez        
+whale    /    la ballena
+forest    /    el bosque
+trees    /    los árboles
+plant    /    planta    
+flower    /    flor     
+jungle    /    selva    
+ocean    /    el océano
+river    /    el río
+pond    /    la charca
+lake    /    el lago
+hill    /    la colina
+mountain    /    la montaña
+waterfall    /    cascada       
+rainbow    /    el arco iris
+sky    /    el cielo
+cloud    /    niebla    
+rain    /    la lluvia
+snow    /    el nieve
+hail    /    el granizo
+fog    /    la niebla
+field    /    el campo
+lightning    /    el relámpago
+angel    /    el ángel
+baptism    /    el bautismo
+Bible    /    la biblia
+bishop    /    el obispo
+Buddhism    /    el buddismo
+cathedral    /    el catedral
+Christianity    /    el cristianismo
+church    /    la iglesia
+faith    /    la fe
+God    /    el Diós
+heaven    /    el cielo
+hell    /    el infierno
+Judaism    /    el judaismo
+monastery    /    el monasterio
+Pope    /    el Pápa
+prophet    /    la profeta
+Protestant    /    el protestante
+religion    /    la religión
+sermon    /    el sermón
+temple    /    el templo
+to sing    /    cantar  
+to worship    /    adorar       
+to pray    /    orar    
+to repent (reflexive)    /    arrepentirse   
+

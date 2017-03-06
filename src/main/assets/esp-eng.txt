@@ -1,0 +1,257 @@
+contabilidad	/	accounting
+álgebra	/	algebra
+arte	/	art
+biología	/	biology
+negocio	/	business
+cálculo	/	calculus
+química	/	chemistry
+informática	/	computer science
+danza	/	dance
+economía	/	economics
+idiomas extranjeros	/	foreign languages
+geografía	/	geography
+geometría	/	geometry
+historia	/	history
+matemáticas	/	math
+música	/	music
+educación física	/	physical education
+física	/	physics
+ciencia política	/	political science
+el libro	/	book
+el colegio	/	college
+la computadora	/	computer
+el diccionário	/	dictionary
+el papel	/	paper
+el lapiz	/	pencil
+el lapicero	/	pen
+profesor	/	professor
+escuela	/	school
+estudiente	/	student
+maestro 	/	teacher
+el examen	/	exam
+la universidad	/	university
+estudiar	/	to study
+aprender	/	to learn
+enseñar	/	to teach
+escribir	/	to write
+dibujar	/	to draw
+leer	/	to read
+el aeropuerto	/	airport
+lapanadería	/	bakery
+el banco	/	bank
+la playa	/	beach
+el café	/	cafe
+la iglesia	/	church
+la fábrica	/	factory
+el gardín	/	garden
+almacén	/	grocery store
+el hogar	/	home
+la hospital	/	hospital
+la biblioteca	/	library
+el mercado	/	market
+el cine	/	movie theater
+el museo	/	museum
+panaderia	/	pastry shop
+el parque	/	park
+la farmácia	/	pharmacy
+la estación de la policía	/	police station
+los correos	/	post office
+la piscina	/	pool
+el restaurante	/	restaurant
+la escuela	/	school
+el estadio	/	stadium
+tienda	/	store
+la estación del tren	/	train station
+pasillo de ciudad	/	town hall
+librería	/	bookstore
+parque zoológico	/	zoo
+la officina	/	office
+la ciudad	/	city
+la renta	/	the rent
+el impuesto	/	tax
+la cuesta	/	the cost
+el précio	/	price
+la cuenta	/	bill
+la estimación	/	estimate
+el cheque	/	check
+el cheque de viajar	/	travelers check
+el passaporte	/	passport
+el equipaje	/	baggage
+el intercambio de modernidad	/	currency exchange
+las aduanas	/	customs
+la entrada	/	entrance
+el salido	/	exit
+la información	/	information
+pagar	/	to pay
+comprar	/	to buy
+vender	/	to sell
+costar	/	to cost
+alquiler	/	to rent
+depositar	/	to deposit
+en avión	/	by airplane
+en bicicleta	/	by bicycle
+en barco	/	by boat
+en bus	/	by bus
+en automovíl	/	by car
+a pie	/	on foot
+en ciclomotor	/	by moped
+en motocicleta	/	by motorcycle
+en subterráneo	/	by subway
+en taxi	/	by taxi
+en tren	/	by train
+motor	/	engine
+llanta	/	wheel
+mapa	/	map
+los direcciones	/	directions
+acelerar	/	to accelerate
+retardarse	/	to break
+parar	/	to stop
+ir	/	to go
+dar vuelta a la izqierda	/	turn left
+dar vuelta a la derecha	/	turn right
+ir derecho	/	go straight
+la casa	/	house
+el apartamento	/	apartment
+el cuarto	/	room
+la sala	/	living room
+la cocina	/	kitchen
+cuarto de cenar	/	dining room
+vestíbulo	/	hallway
+escaleras	/	stairs
+el baño	/	bathroom
+bañera	/	bathtub
+ducha	/	shower
+la pila	/	sink
+azotea	/	roof
+armario	/	closet
+la ventana	/	window
+la pared	/	wall
+la mesa	/	table
+la silla	/	chair
+sofá	/	couch
+escritorio	/	desk
+lavaplatos	/	dishwasher
+el puerto	/	door
+la luz	/	light
+cama	/	bed
+manta	/	blanket
+televisión	/	television
+el rádio	/	radio
+la refrijedora	/	refrigerator
+estufa	/	stove
+el horno	/	oven
+la basura	/	garbage
+microonda	/	microwave
+la cabeza	/	head
+el cerebro	/	brain
+el pelo	/	hair
+la cara	/	face
+el oreja	/	ear
+el ojo	/	eye
+la boca	/	mouth
+la naríz	/	nose
+el cuello	/	neck
+el hombro	/	shoulder
+el pecho	/	chest
+el estómigo	/	stomach
+la cintura	/	waist
+la espalda	/	back
+el corazón	/	heart
+el brazo	/	arm
+el codo	/	elbow
+la muñeca	/	wrist
+el mano	/	hand
+el dedo	/	finger
+la pierna	/	leg
+el pie	/	foot
+el del sombrero	/	hat
+los pendientes	/	earrings
+la camisa	/	shirt
+la blusa	/	blouse
+el vestido	/	dress
+los pantelones	/	pants
+pantalones vaqueros	/	jeans
+la falda	/	skirt
+los calcetines	/	socks
+los zapatos	/	shoes
+el traje de bañar	/	swimsuit
+ropa anterior	/	underwear
+los guantes	/	gloves
+la correa	/	belt
+la capa	/	coat
+el anillo	/	ring 
+Me duelle en mi brazo.	/	My arm hurts.
+¿Estás lastimado?	/	Are you hurt?
+Tengo dolor de la cabeza.	/	I have a headache.
+¿Tienes aspirina?	/	Do you have aspirin?
+Me estás lastimando.	/	You are hurting me.
+No lo lastimas.	/	Don't hurt him.
+edo del pie	/	toe
+perro	/	dog
+gato	/	cat
+ratón	/	mouse
+ave	/	bird
+gallina 	/	chicken
+gallo 	/ rooster
+la vaca	/	cow
+pato	/	duck
+la cabra	/	goat
+el caballo	/	horse
+cerdo	/	pig
+oveja	/	sheep
+el lión	/	lion
+el tigre	/	tiger
+el oso	/	bear
+el lobo	/	wolf
+el elefante	/	elephant
+el mono	/	monkey
+la mofeta	/	skunk
+águila	/	eagle
+pez	/	fish
+la ballena	/	whale
+el bosque	/	forest
+los árboles	/	trees
+planta	/	plant
+flor	/	flower
+selva	/	jungle
+el océano	/	ocean
+el río	/	river
+la charca	/	pond
+el lago	/	lake
+la colina	/	hill
+la montaña	/	mountain
+cascada	/	waterfall
+el arco iris	/	rainbow
+el cielo	/	sky
+niebla	/	cloud
+la lluvia	/	rain
+el nieve	/	snow
+el granizo	/	hail
+la niebla	/	fog
+el campo	/	field
+el relámpago	/	lightning
+el ángel	/	angel
+el bautismo	/	baptism
+la biblia	/	Bible
+el obispo	/	bishop
+el buddismo	/	Buddhism
+el catedral	/	cathedral
+el cristianismo	/	Christianity
+la iglesia	/	church
+la fe	/	faith
+el Diós	/	God
+el cielo	/	heaven
+el infierno	/	hell
+el judaismo	/	Judaism
+el monasterio	/	monastery
+el Pápa	/	Pope
+la profeta	/	prophet
+el protestante	/	Protestant
+la religión	/	religion
+el sermón	/	sermon
+el templo	/	temple
+cantar	/	to sing
+adorar	/	to worship
+orar	/	to pray
+arrepentirse	/	to repent (reflexive)
+

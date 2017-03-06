@@ -14,6 +14,7 @@ import java.util.Locale;
 import java.util.Set;
 
 import static com.cfox.wmem.QuizData.getQuizData;
+import static java.lang.Thread.sleep;
 
 
 public class LearnActivity extends AppCompatActivity {
@@ -34,12 +35,32 @@ public class LearnActivity extends AppCompatActivity {
 //            new LearnedWord(4, "vais", "вы идете", 0),
 //            new LearnedWord(5, "van", "они идут", 0),
 //    };
+    class TtsInitListener implements TextToSpeech.OnInitListener{
+        @Override
+        public void onInit(int i) {
+            Locale lang=mAdapter.getLang();
+            String tx=mAdapter.getWord();
+            if(TextToSpeech.LANG_AVAILABLE==tts.isLanguageAvailable(lang)){
+                speak.setEnabled(true);
+                speak.setChecked(getPreferences(MODE_PRIVATE).getBoolean(KEY_SPEAK,true));
+                tts.setLanguage(lang);
+                question.setText(tx);
+                //noinspection deprecation
+                tts.speak(tx, TextToSpeech.QUEUE_FLUSH, null);
+            }else{
+                speak.setEnabled(false);
+                speak.setChecked(false);
+                question.setText(tx);
+            }
+        }
+    }
+
     private RevLWAdapter mAdapter;
     private TextView question;
     private TextView caption;
     private ToggleButton speak;
     private TextToSpeech tts;
-
+    private TtsInitListener ttsInitListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +87,7 @@ public class LearnActivity extends AppCompatActivity {
             }
         });
         question=(TextView)findViewById(R.id.question);
-        question.setText(mAdapter.getWord());
+
         question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,31 +105,21 @@ public class LearnActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 boolean b=speak.isChecked();
-                getPreferences(MODE_PRIVATE).edit().putBoolean(KEY_SPEAK,b).commit();
+                getPreferences(MODE_PRIVATE).edit().putBoolean(KEY_SPEAK,b).commit();//todo: kill tts???
             }
         });
-        speak.setEnabled(false);
-        speak.setChecked(false);
-        tts=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int i) {
-                prepareTTS();
-             }
-        });
+        speak.setEnabled(true);
+        speak.setChecked(getPreferences(MODE_PRIVATE).getBoolean(KEY_SPEAK,true));
+        if(speak.isChecked()) {
+            ttsInitListener = new TtsInitListener();
+            tts = new TextToSpeech(getApplicationContext(), ttsInitListener);
+        }else{
+            question.setText(mAdapter.getWord());
+        }
         setCaption();
     }
 
     private void prepareTTS(){
-        Locale lang=mAdapter.getLang();
-        int ttsres=tts.isLanguageAvailable(lang);
-        if(TextToSpeech.LANG_AVAILABLE==tts.isLanguageAvailable(lang)){
-            speak.setEnabled(true);
-            speak.setChecked(getPreferences(MODE_PRIVATE).getBoolean(KEY_SPEAK,true));
-            tts.setLanguage(lang);
-        }else{
-            speak.setEnabled(false);
-            speak.setChecked(false);
-        }
     }
 
     private void setCaption(){
@@ -126,19 +137,24 @@ public class LearnActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
+        tts.shutdown();
+        tts=null;
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        tts.shutdown();
+        if(tts!=null) tts.shutdown();
+        tts=null;
         QuizData.closeQuizData();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        if(tts==null){
+            tts=new TextToSpeech(getApplicationContext(),ttsInitListener);
+        };
         QuizData.initQuizdata(this);
     }
 

@@ -89,11 +89,27 @@
             android:gravity="center"
             android:text="8 48 168 336" />
 
+
+
+            <TextView
+                style="@style/SettingCaption"
+                android:text="@string/wlang"
+                android:gravity="center"/>
+
+            <Spinner
+                android:id="@+id/s_lang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+
+
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            style="?android:attr/buttonBarStyle">
+            style="?android:attr/buttonBarStyle"
+            android:layout_marginTop="20dp">
 
             <Button android:id="@+id/scancel"
                 style="?android:attr/buttonBarButtonStyle"
