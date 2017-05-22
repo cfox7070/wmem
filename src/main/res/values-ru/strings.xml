@@ -31,4 +31,5 @@
     <string name="words_added">слов добавлено</string>
     <string name="words_exported">слов записано</string>
     <string name="wrong_intervals">Не могу прочитать интервалы</string>
+    <string name="wlang">language to learn</string>
 </resources>
